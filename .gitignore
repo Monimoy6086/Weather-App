@@ -1,0 +1,37 @@
+# IDE folders and files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+
+# Gradle and build files
+.gradle/
+build/
+app/build/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Local configuration files
+local.properties
+.kotlin/
+
+# Android Studio auto-generated
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Debug and memory dumps
+*.hprof
+*.log
+
+# Keystore files (for security)
+*.jks
+*.keystore
+*.p12
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
