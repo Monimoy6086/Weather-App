@@ -10,12 +10,12 @@ import com.example.weatherapp.ui.viewmodel.WeatherViewModel
 import com.example.weatherapp.utils.LocationHelper
 import com.example.weatherapp.utils.RetrofitClientProvider
 import com.example.weatherapp.worker.WeatherSyncWorker
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.workmanager.dsl.worker
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 val databaseModule = module {
     single { WeatherDatabase.getInstance(androidContext()) }
@@ -47,7 +47,7 @@ val repositoryModule = module {
             weatherDao = get(),
             apiService = get(),
             locationHelper = get(),
-            context = androidContext()
+            application = androidApplication()
         )
     }
 }

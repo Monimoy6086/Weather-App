@@ -1,6 +1,6 @@
 package com.example.weatherapp.ui.viewmodel
 
-import android.content.Context
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.Constraints
@@ -26,17 +26,15 @@ import java.util.concurrent.TimeUnit
 class WeatherViewModel(
     private val repository: WeatherRepository,
     private val locationHelper: LocationHelper,
-    private val context: Context
+    private val application: Application
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
 
     private val _currentLocation = MutableStateFlow<LocationCoordinates?>(null)
-    val currentLocation: StateFlow<LocationCoordinates?> = _currentLocation.asStateFlow()
 
     private val _currentCity = MutableStateFlow("Lucknow")
-    val currentCity: StateFlow<String> = _currentCity.asStateFlow()
 
     private val _temperatureUnit = MutableStateFlow(TemperatureUnit.CELSIUS)
 
@@ -205,7 +203,7 @@ class WeatherViewModel(
             .setInputData(syncData)
             .build()
 
-        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+        WorkManager.getInstance(application).enqueueUniquePeriodicWork(
             WeatherSyncWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.UPDATE,
             syncRequest

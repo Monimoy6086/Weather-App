@@ -30,23 +30,27 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlin {
-        compilerOptions {
-            languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_2)
-        }
-    }
+
     buildFeatures {
         buildConfig = true
         compose = true
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_2)
     }
 }
 
@@ -73,7 +77,7 @@ dependencies {
     // Coroutines & Flow
     implementation(libs.kotlinx.coroutines.android)
 
-    // WorkManager for Background Sync & Alerts
+    // WorkManager for Background Sync
     implementation(libs.androidx.work.runtime.ktx)
 
     // Koin Dependency Injection
@@ -81,7 +85,7 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.androidx.workmanager)
 
-    // Networking (Retrofit & Gson)
+    // Networking (Retrofit, OkHttp & Gson)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
