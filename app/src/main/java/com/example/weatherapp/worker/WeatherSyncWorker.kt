@@ -68,7 +68,6 @@ class WeatherSyncWorker(
     }
 
     companion object {
-        const val KEY_CITY_NAME = "key_city_name"
         const val KEY_LAT = "key_lat"
         const val KEY_LON = "key_lon"
         const val WORK_NAME = "weather_background_sync_worker"

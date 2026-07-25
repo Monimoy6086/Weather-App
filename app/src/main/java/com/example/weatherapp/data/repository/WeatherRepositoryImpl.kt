@@ -16,7 +16,7 @@ import com.example.weatherapp.domain.model.WeatherAlert
 import com.example.weatherapp.domain.model.WeatherCondition
 import com.example.weatherapp.utils.LocationHelper
 import com.example.weatherapp.utils.NetworkUtils
-import android.content.Context
+import android.app.Application
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
@@ -26,7 +26,7 @@ class WeatherRepositoryImpl(
     private val weatherDao: WeatherDao,
     private val apiService: WeatherApiService,
     private val locationHelper: LocationHelper,
-    private val context: Context
+    private val application: Application
 ) : WeatherRepository {
 
     // 30 minutes cache TTL
@@ -56,7 +56,7 @@ class WeatherRepositoryImpl(
         var hasFetched = false
         dbFlow?.collect { cachedData ->
             val now = System.currentTimeMillis()
-            val isInternetAvailable = NetworkUtils.isInternetAvailable(context)
+            val isInternetAvailable = NetworkUtils.isInternetAvailable(application)
             val isCacheStale =
                 cachedData == null || (now - cachedData.lastRefreshedAt) > CACHE_EXPIRATION_MS
 

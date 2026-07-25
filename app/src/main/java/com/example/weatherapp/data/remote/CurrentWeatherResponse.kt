@@ -45,10 +45,6 @@ data class SnowDto(
     @SerializedName("1h") val snow1h: Double?
 )
 
-data class AlertsContainerDto(
-    @SerializedName("alert") val alertList: List<AlertDto>?
-)
-
 data class AlertDto(
     @SerializedName("id") val id: String?,
     @SerializedName("sender_name") val senderName: String?,

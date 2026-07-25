@@ -23,14 +23,16 @@ import com.example.weatherapp.ui.theme.OfflineOrange
 import com.example.weatherapp.ui.theme.TextWhite
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
+import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 fun OfflineStatusBadge(
     lastRefreshedAt: Long,
     modifier: Modifier = Modifier
 ) {
-    val dateText = SimpleDateFormat("h:mm a, MMM d", Locale.getDefault()).format(Date(lastRefreshedAt))
+    val dateText = SimpleDateFormat("h:mm a, MMM d", LocalLocale.current.platformLocale).format(
+        Date(lastRefreshedAt)
+    )
 
     Row(
         modifier = modifier
